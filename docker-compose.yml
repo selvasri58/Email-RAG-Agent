@@ -1,0 +1,32 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Local Qdrant vector database for the Email RAG Agent
+# ─────────────────────────────────────────────────────────────────────────────
+# Usage:
+#   docker compose up -d        # start Qdrant in background
+#   docker compose down         # stop
+#   docker compose logs -f      # follow logs
+#
+# Qdrant dashboard:  http://localhost:6333/dashboard
+# REST API endpoint: http://localhost:6333
+# gRPC endpoint:     localhost:6334
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.11.0
+    container_name: email-rag-qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333"   # REST API + Web UI
+      - "6334:6334"   # gRPC (faster client transport)
+    volumes:
+      # Persist vector storage to a local folder so embeddings survive restarts.
+      - ./qdrant_storage:/qdrant/storage
+    environment:
+      QDRANT__SERVICE__GRPC_PORT: 6334
+      QDRANT__LOG_LEVEL: INFO
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/localhost/6333' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

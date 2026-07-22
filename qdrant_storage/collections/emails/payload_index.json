@@ -1,0 +1,1 @@
+{"schema":{"sender_email":"keyword","sender_domain":"keyword","uid":"integer","received_at_ts":"integer","date_str":"keyword"}}

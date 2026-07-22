@@ -1,0 +1,28 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Email RAG Agent — Python dependencies (100% free / open-source)
+# ─────────────────────────────────────────────────────────────────────────────
+# Install:  pip install -r requirements.txt
+# Tested with Python 3.10+
+
+# ── LangGraph & LangChain (agent orchestration) ───────────────────────────────
+langgraph>=0.2.50
+langchain>=0.3.7
+langchain-core>=0.3.15
+langchain-google-genai>=2.0.4        # Gemini LLM wrapper
+
+# ── Vector store ──────────────────────────────────────────────────────────────
+qdrant-client>=1.12.0
+
+# ── Local embeddings (Hugging Face sentence-transformers) ─────────────────────
+sentence-transformers>=3.2.1
+torch>=2.2.0                         # required by sentence-transformers
+
+# ── Email / IMAP ──────────────────────────────────────────────────────────────
+IMAPClient>=3.0.1
+beautifulsoup4>=4.12.3               # HTML → text for email bodies
+lxml>=5.3.0                          # fast HTML parser backend
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+python-dotenv>=1.0.1                 # load .env config
+rich>=13.9.4                         # pretty terminal logging
+tenacity>=9.0.0                      # robust retries on transient IMAP failures

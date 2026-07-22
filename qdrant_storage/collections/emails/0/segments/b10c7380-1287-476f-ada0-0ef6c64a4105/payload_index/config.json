@@ -1,0 +1,1 @@
+{"indexed_fields":{"uid":"integer","received_at_ts":"integer","sender_email":"keyword","date_str":"keyword","sender_domain":"keyword"}}
